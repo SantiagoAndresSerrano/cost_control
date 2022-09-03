@@ -15,7 +15,8 @@ These instructions will allow you to install correctly the Python web project
  - git -m commit "my first commit"
  ```
 2. Clone the repository 
- ```- git clone https://github.com/SantiagoAndresSerrano/cost_control 
+ ```
+ - git clone https://github.com/SantiagoAndresSerrano/cost_control 
  #or download the source code.
  ```
 3. Create a Virtual enviorenment
