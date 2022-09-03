@@ -27,7 +27,38 @@ These instructions will allow you to install correctly the Python web project
  pip install -r requirements.txt
  ```
 6. Run the app
-``` - python main.py```
+``` 
+- python main.py
+
+```
+
+### Deployment 🚀
+
+The API was deployed on heroku, a free service that was made easy for me to use, however I have had experience deploying through AWS services, in RDS (Relational Database Service) S3 and Elastic Bean Stalk technologies.
+
+1. Log in to heroku Account
+``` 
+- heroku login
+
+```
+2. Clone the repository 
+``` 
+- heroku git:clone -a cost-control-v1
+
+```
+3. Deploy changes
+``` 
+- git add .
+- git commit -am "My First Commit"
+- git push heroku master
+
+```
+4. Open app
+
+``` 
+https://cost-control-v1.herokuapp.com/swagger/#/
+
+```
 
 #### built with 🛠️
 
