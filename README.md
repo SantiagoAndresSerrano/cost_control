@@ -23,7 +23,8 @@ These instructions will allow you to install correctly the Python web project
  - venv\Scripts\activate
  ```
 5. install the requirements
- ```-  pip install -r requirements.txt
+ ``` 
+ pip install -r requirements.txt
  ```
 6. Run the app
 ``` - python main.py```
