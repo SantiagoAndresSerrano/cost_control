@@ -76,23 +76,21 @@ def deleteBill(user, bill_id):
         return "user or bill not found", status.HTTP_404_NOT_FOUND
 
 
-# @users.route("/login", methods=["POST"])
-# def login():
+@users.route("/login", methods=["POST"])
+def login():
+    try:
+        username = request.json["username"]
+        password = request.json["password"] 
+        user = Users.query.filter(and_(Users.username == username, Users.password == password)).one()
+        response = {
+            "login": True,
+            "username": user.username,
+            "email": user.email,
+            "mensaje": "Welcome"
+        }
 
-#     try:
-#         userFound = Users.query.filter(Users.passw == user).one()
-#     except NoResultFound:
-#         return "user with username "+user+" not found", status.HTTP_404_NOT_FOUND
-#     try:
-#         type_ = int(request.json["type"])
-#         value = int(request.json["value"])
-#         observation = request.json["observation"]
-#         date_bill = datetime.date.today()
-#         bill = Bill(None, date_bill, userFound.id, value, type_, observation)
-#         db.session.add(bill)
-#         db.session.commit()
+        return response, status.HTTP_200_OK
 
-#     except ValueError:
-#         return "invalid data", status.HTTP_400_BAD_REQUEST
-
-#     return bill_schema.dump(bill), status.HTTP_200_OK
+    except NoResultFound:
+        response = {'login':False, 'mensaje':"Usuario o contraseña invalido"}
+        return response, status.HTTP_400_BAD_REQUEST

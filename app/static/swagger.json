@@ -1,0 +1,187 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "description": "sean",
+      "version": "1.0.0",
+      "title": "Seans-Python3-Flask-Rest-Boilerplate",
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "servers": [
+      {
+        "url": "/"
+      }
+    ],
+    "tags": [
+      {
+        "name":"User bills request",
+        "description": "API for requesting and return User Bills requests"
+      }
+    ],
+    "paths": {
+      "/users/{user}/bills": {
+        "parameters": [
+            {
+              "name": "user",
+              "in": "path",
+              "required": true,
+              "description": "username of the user",
+              "type": "string"
+            }
+          ],
+        "post": {
+          "tags": [
+            "User bills request"
+          ],
+          "summary": "Saves a user's bill",
+          "requestBody": {
+            "description": "Book Request Object",
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/bookRequest"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/components/schemas/bookRequests"
+              }
+            }
+          }
+        },
+        "get": {
+          "tags": [
+            "User bills request"
+          ],
+          "summary": "Returns the user's bill list",
+        
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "201": {
+              "description": "OK"
+            },
+            "400": {
+              "description": "Failed. Bad post data."
+            }
+          }
+        }
+      },
+      "/users/{user}/bills/{bill_id}": {
+        "parameters": [
+            {
+              "name": "user",
+              "in": "path",
+              "required": true,
+              "description": "username of the user",
+              "type": "string"
+            },
+            {
+                "name": "bill_id",
+                "in": "path",
+                "required": true,
+                "description": "username of the user",
+                "type": "string"
+            }
+          ],
+        "get": {
+          "tags": [
+            "User bills request"
+          ],
+          "summary": "Returns a user's bill",
+          
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/components/schemas/bookRequests"
+              }
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "User bills request"
+          ],
+          "summary": "Deletes a user's bill",
+        
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "201": {
+              "description": "OK"
+            },
+            "400": {
+              "description": "Failed. Bad post data."
+            }
+          }
+        }
+      }
+
+    },
+    "components": {
+      "schemas": {
+        "id": {
+          "properties": {
+            "uuid": {
+              "type": "string"
+            }
+          }
+        },
+        "billRequestPostBody": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "format": "string"
+            },
+            "value": {
+              "type": "string",
+              "format": "string"
+            },
+            "observation": {
+              "type": "string",
+              "format": "string"
+            }
+          }
+        },
+        "billRequest": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "format": "string"
+            },
+            "email": {
+              "type": "string",
+              "format": "email"
+            },
+            "timestamp": {
+              "type": "string",
+              "format": "number"
+            }
+          }
+        },
+        "bookRequests": {
+          "type": "object",
+          "properties": {
+            "billRequest": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/components/schemas/billRequest"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
