@@ -42,7 +42,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/bookRequest"
+                  "$ref": "#/components/schemas/billRequest"
                 }
               }
             }
@@ -51,7 +51,7 @@
             "200": {
               "description": "OK",
               "schema": {
-                "$ref": "#/components/schemas/bookRequests"
+                "$ref": "#/components/schemas/billRequests"
               }
             }
           }
@@ -157,21 +157,21 @@
         "billRequest": {
           "type": "object",
           "properties": {
-            "title": {
+            "type": {
               "type": "string",
               "format": "string"
             },
-            "email": {
+            "value": {
               "type": "string",
-              "format": "email"
+              "format": "string"
             },
-            "timestamp": {
+            "observation": {
               "type": "string",
-              "format": "number"
+              "format": "string"
             }
           }
         },
-        "bookRequests": {
+        "billRequests": {
           "type": "object",
           "properties": {
             "billRequest": {
