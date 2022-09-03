@@ -33,7 +33,7 @@
           ],
           "summary": "Saves a user's bill",
           "requestBody": {
-            "description": "Book Request Object",
+            "description": "bill Request Object",
             "required": true,
             "content": {
               "application/json": {
@@ -96,10 +96,7 @@
           
           "responses": {
             "200": {
-              "description": "OK",
-              "schema": {
-                "$ref": "#/components/schemas/bookRequests"
-              }
+              "description": "OK"
             }
           }
         },
@@ -120,7 +117,35 @@
               "description": "Failed. Bad post data."
             }
           }
-        }
+        },
+        "put": {
+            "tags": [
+              "User bills request"
+            ],
+            "summary": "Updates a user's bill",
+            "requestBody": {
+                "description": "bill Request Object",
+                "required": true,
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/billRequest"
+                    }
+                  }
+                }
+              },
+            "produces": [
+              "application/json"
+            ],
+            "responses": {
+              "201": {
+                "description": "OK"
+              },
+              "400": {
+                "description": "Failed. Bad post data."
+              }
+            }
+          }
       },
       "/login": {
         "post": {
@@ -141,10 +166,8 @@
           },
           "responses": {
             "200": {
-              "description": "OK",
-              "schema": {
-                "$ref": "#/components/schemas/bookRequests"
-              }
+              "description": "OK"
+              
             }
           }
         }
@@ -190,7 +213,7 @@
                     "type": "Integer"
               }
             }
-          },
+        },
         "billRequestPostBody": {
           "type": "object",
           "properties": {
@@ -220,7 +243,7 @@
                 "format": "string"
               }
             }
-          },
+        },
         "billRequest": {
           "type": "object",
           "properties": {
