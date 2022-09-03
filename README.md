@@ -5,7 +5,7 @@ expense control system for prisma digital employees to control their monthly bud
 
 ## Getting started 🚀
 
-These instructions will allow you to install correctly the java web project
+These instructions will allow you to install correctly the Python web project
 
 ### Installation 🔧
 
