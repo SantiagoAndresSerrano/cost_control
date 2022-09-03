@@ -33,7 +33,10 @@ def saveBill(user):
 
     return bill_schema.dump(bill), status.HTTP_200_OK
 
-
+@users.route("/users" , methods=["GET"]) 
+def getAllUser():
+    all_users= Users.query.all()
+    return users_schema.dump(all_users), status.HTTP_200_OK
 
 @users.route("/users/<string:user>/bills" , methods=["GET"]) 
 def getAllBillsByUsername(user):
@@ -73,22 +76,23 @@ def deleteBill(user, bill_id):
         return "user or bill not found", status.HTTP_404_NOT_FOUND
 
 
-@users.route("/users/<string:user>/bills", methods=["POST"])
-def saveBill(user):
-    try:
-        userFound = Users.query.filter(Users.username == user).one()
-    except NoResultFound:
-        return "user with username "+user+" not found", status.HTTP_404_NOT_FOUND
-    try:
-        type_ = int(request.json["type"])
-        value = int(request.json["value"])
-        observation = request.json["observation"]
-        date_bill = datetime.date.today()
-        bill = Bill(None, date_bill, userFound.id, value, type_, observation)
-        db.session.add(bill)
-        db.session.commit()
+# @users.route("/login", methods=["POST"])
+# def login():
 
-    except ValueError:
-        return "invalid data", status.HTTP_400_BAD_REQUEST
+#     try:
+#         userFound = Users.query.filter(Users.passw == user).one()
+#     except NoResultFound:
+#         return "user with username "+user+" not found", status.HTTP_404_NOT_FOUND
+#     try:
+#         type_ = int(request.json["type"])
+#         value = int(request.json["value"])
+#         observation = request.json["observation"]
+#         date_bill = datetime.date.today()
+#         bill = Bill(None, date_bill, userFound.id, value, type_, observation)
+#         db.session.add(bill)
+#         db.session.commit()
 
-    return bill_schema.dump(bill), status.HTTP_200_OK
+#     except ValueError:
+#         return "invalid data", status.HTTP_400_BAD_REQUEST
+
+#     return bill_schema.dump(bill), status.HTTP_200_OK
