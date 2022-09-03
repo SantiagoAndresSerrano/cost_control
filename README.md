@@ -27,6 +27,11 @@ These instructions will allow you to install correctly the Python web project
 
 ##### Architecture
 - API REST 
+
+- **Flassger** I used flassger for the documentation of the different proposed endpoints, in order to facilitate the review of them. LINK: https://cost-control-v1.herokuapp.com/swagger/#/ 🔩
+
+The architecture is a REST architecture, which is represented by the following diagram, in this case the client is a web browser, which communicates through HTTP requests (GET, POST, PUT, DELETE) with the API rest represented as an interface and making use of the flassger tool. The API, being a programmable application interface, exposes the required services through the corresponding endpoints, to finally communicate with the database through SQLALCHEMY. 
+
 ![Diagrama de arquitectura](https://github.com/SantiagoAndresSerrano/cost_control/blob/master/doc/architecture.png?raw=true "Architecture diagram")
 
 
