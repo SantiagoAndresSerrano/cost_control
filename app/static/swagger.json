@@ -1,19 +1,15 @@
 {
     "openapi": "3.0.0",
     "info": {
-      "description": "sean",
+      "description": "API for an expense management and expense control system for prisma digital employees to control their monthly budget.",
       "version": "1.0.0",
-      "title": "Seans-Python3-Flask-Rest-Boilerplate",
+      "title": "Cost Control Prisma",
       "license": {
         "name": "MIT",
         "url": "https://opensource.org/licenses/MIT"
       }
     },
-    "servers": [
-      {
-        "url": "/"
-      }
-    ],
+    
     "tags": [
       {
         "name":"User bills request",
@@ -125,18 +121,76 @@
             }
           }
         }
+      },
+      "/login": {
+        "post": {
+          "tags": [
+            "User bills request"
+          ],
+          "summary": "Login user",
+          "requestBody": {
+            "description": "Book Request Object",
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginRequestPostBody"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/components/schemas/bookRequests"
+              }
+            }
+          }
+        }
       }
 
     },
     "components": {
       "schemas": {
-        "id": {
+        "user": {
           "properties": {
-            "uuid": {
-              "type": "string"
+            "id": {
+              "type": "integer"
+            },
+            "username": {
+                "type": "string"
+            },
+            "password": {
+                "type": "string"
+            },
+            "email": {
+                "type": "string"
             }
           }
         },
+        "bill": {
+            "properties": {
+              "id": {
+                "type": "Integer"
+              },
+              "date_bill": {
+                  "type": "Date"
+              },
+              "value": {
+                  "type": "Integer"
+              },
+              "type_": {
+                  "type": "string"
+              },
+              "observation": {
+                "type": "String"
+              },
+                "user_id": {
+                    "type": "Integer"
+              }
+            }
+          },
         "billRequestPostBody": {
           "type": "object",
           "properties": {
@@ -154,6 +208,19 @@
             }
           }
         },
+        "LoginRequestPostBody": {
+            "type": "object",
+            "properties": {
+              "username": {
+                "username": "string",
+                "format": "string"
+              },
+              "password": {
+                "type": "string",
+                "format": "string"
+              }
+            }
+          },
         "billRequest": {
           "type": "object",
           "properties": {

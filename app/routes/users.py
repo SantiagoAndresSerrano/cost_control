@@ -1,10 +1,9 @@
 import datetime 
 from flask import Blueprint, request
 from flask_api import status
-
 from app.model.bill import Bill
 from ..model.users import Users
-from ..schema.user_schema import user_schema, users_schema
+from ..schema.user_schema import users_schema
 from ..schema.bill_schema import bill_schema, bills_schema
 from ..utils.db import db
 from sqlalchemy import and_
@@ -33,10 +32,13 @@ def saveBill(user):
 
     return bill_schema.dump(bill), status.HTTP_200_OK
 
+
+
 @users.route("/users" , methods=["GET"]) 
 def getAllUser():
     all_users= Users.query.all()
     return users_schema.dump(all_users), status.HTTP_200_OK
+
 
 @users.route("/users/<string:user>/bills" , methods=["GET"]) 
 def getAllBillsByUsername(user):
@@ -49,17 +51,40 @@ def getAllBillsByUsername(user):
         return "user with username "+user+" not found", status.HTTP_401_UNAUTHORIZED
 
 
+
 @users.route("/users/<string:user>/bills/<int:bill_id>" , methods=["GET"]) 
 def getBillByUsername(user, bill_id):
     try:
         userFound = Users.query.filter(Users.username == user).one()
         idUser= userFound.id
+
         bill = Bill.query.filter(and_(Bill.user_id == idUser,Bill.id == bill_id)).one()
         
         return bill_schema.dump(bill), status.HTTP_200_OK
     except NoResultFound:
         return "user or bill not found", status.HTTP_404_NOT_FOUND
 
+
+
+@users.route("/users/<string:user>/bills/<int:bill_id>" , methods=["PUT"]) 
+def updateBill(user, bill_id):
+    try:
+        userFound = Users.query.filter(Users.username == user).one()
+        idUser= userFound.id
+        bill = Bill.query.filter(and_(Bill.user_id == idUser,Bill.id == bill_id)).one()
+        
+        if "type" in request.json:
+            bill.type_ = request.json['type']
+        if "value" in request.json:
+            bill.value = request.json['value']
+        if "observation" in request.json:
+            bill.observation = request.json['observation']
+            
+        db.session.commit()
+
+        return bill_schema.dump(bill), status.HTTP_200_OK
+    except NoResultFound:
+        return "user or bill not found", status.HTTP_404_NOT_FOUND
 
 
 @users.route("/users/<string:user>/bills/<int:bill_id>" , methods=["DELETE"]) 
