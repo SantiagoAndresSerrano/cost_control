@@ -12,8 +12,8 @@ def create_app(config_file="utils/config.py"):
     app = Flask(__name__)
     db = SQLAlchemy(app)
     ma = Marshmallow(app)
-    app.config["SQLALCHEMY_DATABASE_URI"] = f"postgresql://postgres:Prisma2022@prismatest.cr5kiddvokid.us-east-2.rds.amazonaws.com:5432/test"
     app.config.from_pyfile(config_file)
+    app.config["SQLALCHEMY_DATABASE_URI"] = f"postgresql://postgres:Prisma2022@prismatest.cr5kiddvokid.us-east-2.rds.amazonaws.com:5432/test"
     app.register_blueprint(users)
     app.register_blueprint(bills)
     db.init_app(app)
