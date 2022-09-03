@@ -27,6 +27,6 @@ These instructions will allow you to install correctly the Python web project
 
 ##### Architecture
 - API REST 
-![Diagrama de arquitectura](https://raw.githubusercontent.com/SantiagoAndresSerrano/cost_control/master/doc/architecture.svg "Architecture diagram")
+![Diagrama de arquitectura](https://user-images.githubusercontent.com/62350078/188261259-6365633d-57ae-41d8-8a71-7b9575995274.png "Architecture diagram")
 
 
