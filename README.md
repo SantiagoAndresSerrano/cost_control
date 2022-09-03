@@ -27,5 +27,6 @@ These instructions will allow you to install correctly the java web project
 
 ##### Architecture
 - API REST 
+![Diagrama de arquitectura](https://raw.githubusercontent.com/SantiagoAndresSerrano/cost_control/master/doc/architecture.svg "Architecture diagram")
 
 
